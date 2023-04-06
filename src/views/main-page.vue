@@ -1,15 +1,15 @@
 <template>
     <div class="App">
         <div>
-            <p class="poster">you are what you smoke</p>
+            <p class="poster">you are <br> what <br> you smoke</p>
             <div class="grand"></div>
             <div class="smoke"></div>
         </div>
         <div>
-            <button class="btn"> <img class="btn-logo" src="./../assets/liquid.png"/> <p class="btn-text">liquids</p> </button>
-            <button class="btn"> <img class="btn-logo" src="./../assets/recipe.png"/> <p class="btn-text">recipe</p> </button>
-            <button class="btn"> <img class="btn-logo" src="./../assets/calc.png"/> <p class="btn-text">calculate</p> </button>
-            <button class="btn"> <img class="btn-logo" src="./../assets/account.png"/> <p class="btn-text">account</p> </button>
+            <button @click="goToLiquids" class="btn"> <img class="btn-logo" src="./../assets/liquid.png"/> <p class="btn-text">liquids</p> </button>
+            <button @click="goToRecipe" class="btn"> <img class="btn-logo" src="./../assets/recipe.png"/> <p class="btn-text">recipe</p> </button>
+            <button @click="goToCalc" class="btn"> <img class="btn-logo" src="./../assets/calc.png"/> <p class="btn-text">calculate</p> </button>
+            <button @click="goToAccount" class="btn"> <img class="btn-logo" src="./../assets/account.png"/> <p class="btn-text">account</p> </button>
         </div>
         
 
@@ -22,6 +22,20 @@ export default {
             
         }
         
+    },
+    methods: {
+      goToLiquids(){
+        this.$router.push('/liquids')
+      },
+      goToAccount(){
+        this.$router.push('/account')
+      },
+      goToRecipe(){
+        this.$router.push('/recipe')
+      },
+      goToCalc(){
+        this.$router.push('/Calc')
+      }  
     }
 }
 </script>
@@ -31,6 +45,10 @@ export default {
         padding: 0;
         height: 70%;
         background: #E1A3EB;
+    }
+    @font-face {
+    font-family: Alata;
+    src: url('~@/assets/fonts/Alata-Regular.ttf');
     }
     .poster{
         position: absolute;
