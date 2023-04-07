@@ -6,10 +6,10 @@
             <div class="smoke"></div>
         </div>
         <div>
-            <button @click="goToLiquids" class="btn"> <img class="btn-logo" src="./../assets/liquid.png"/> <p class="btn-text">liquids</p> </button>
-            <button @click="goToRecipe" class="btn"> <img class="btn-logo" src="./../assets/recipe.png"/> <p class="btn-text">recipe</p> </button>
-            <button @click="goToCalc" class="btn"> <img class="btn-logo" src="./../assets/calc.png"/> <p class="btn-text">calculate</p> </button>
-            <button @click="goToAccount" class="btn"> <img class="btn-logo" src="./../assets/account.png"/> <p class="btn-text">account</p> </button>
+            <router-link class="btn" :to="page.path" :key="page.name" v-for="page in pages">
+                <img class="btn-logo" :src="getImgUrl(page.imageName)"/>
+                <p class="btn-text">{{page.imageName}}</p>
+            </router-link>
         </div>
         
 
@@ -18,24 +18,39 @@
 <script>
 export default {
     data(){
-        return{
-            
+        return {
+            pages:[
+            {
+                name:"Рецепты",
+                path:"/recipe",
+                imageName:"recipe",
+                
+            },
+            {
+                name:"Калькулятор",
+                path:"/calc",
+                imageName:"calc",
+                
+            },
+            {
+                name:"Жидкости",
+                path:"/liquids",
+                imageName:"liquid",
+                
+            },
+            {
+                name:"Аккаунт",
+                path:"/account",
+                imageName:"account",  
+            }]
         }
         
     },
-    methods: {
-      goToLiquids(){
-        this.$router.push('/liquids')
-      },
-      goToAccount(){
-        this.$router.push('/account')
-      },
-      goToRecipe(){
-        this.$router.push('/recipe')
-      },
-      goToCalc(){
-        this.$router.push('/Calc')
-      }  
+    methods:{
+        getImgUrl(pet) {
+            var images = require.context('../assets/', false, /\.png$/)
+            return images('./' + pet + ".png")
+        }
     }
 }
 </script>
@@ -99,7 +114,7 @@ export default {
         margin-right: 12%;
         margin-bottom: 12%;
         top: 1022px;
-
+        display: inline-block;
         background: #532E92;
         border-radius: 50px;
 
@@ -109,13 +124,15 @@ export default {
         position: relative;
         width: 267.07px;
         height: 270px;
+        left: 26%;
+        top: 26%;
         background: none;
     }
     .btn-text{
         position: absolute;
         width: 546px;
         height: 120px;
-        padding-top: 10%;
+        padding-top: 45%;
         
 
         font-family: 'Alata';
